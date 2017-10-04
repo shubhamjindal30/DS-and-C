@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+string InfixToPostfix(string expression);
+int HasHigherPrecedence(char operator1,char operator2);
+bool IsOperator(char C);
+bool IsOperator(char C);
+string InfixToPostfix(string operator){
+	stack<char> S;
+	string postfix="";
+	for(int i=0;i<expression.length();i++)
+	{
+	if(expression[i]==""||expression[i]=="")
+	continue;
+	elseif(IsOperator(expression[i])){
+		while(!string()&&Stop()!='('&& HasHigherPrecedence(Stop(),operator[i])){
+			postfix+=Stop();
+			Stop();
+		}
+		s.push(expression[i]);
+	}
+	elseif(IsOperator(expression[i])){
+		postfix+=expression[i];
+
+	}
+	elseif(expression[i]=='('){
+		s.push(expression[i]);
+	}
+	elseif(expression[i]==')'){
+		while(!S.empty)
+	}
+	}
+}
