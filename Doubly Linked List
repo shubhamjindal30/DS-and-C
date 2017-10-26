@@ -1,0 +1,120 @@
+#include<iostream>
+using namespace std;
+
+struct node{
+  int data;
+  node *next;
+  node *prev;
+};
+
+class linkedlist{
+public:
+  node *head, *tail;
+  linkedlist(){
+    head = NULL;
+    tail = NULL;
+  }
+  void frontnode(int value){
+    node *temp = new node;
+    temp->data = value;
+    temp->next = NULL;
+    temp->prev = NULL;
+    if(head == NULL){
+      head = temp;
+      tail = temp;
+    }
+    else{
+      temp->next = head;
+      head->prev = temp;
+      temp->prev = NULL;
+      head = temp;
+    }
+  }
+  void endnode(int value){
+    node *temp = new node;
+    temp->data = value;
+    if(head == NULL){
+      head = temp;
+      tail = temp;
+      temp = NULL;
+    }
+    else{
+      tail->next = temp;
+      temp->prev = tail;
+      temp->next = NULL;
+      tail = temp;
+    }
+  }
+  void midinsert(int elem, int pos){
+    node *temp = new node;
+    temp->data = elem;
+    node *curr = new node;
+    node *pre = new node;
+    curr = head;
+    while(curr->data != pos){
+      pre = curr;
+      curr = curr->next;
+    }
+    pre = curr;
+    curr = curr->next;
+    temp->next = curr;
+    temp->prev = pre;
+    curr->prev = temp;
+    pre->next = temp;
+  }
+  void frontdisplay(){
+    node *temp = new node;
+    temp = head;
+    while(temp!=NULL){
+      cout << temp->data << "\t";
+      temp = temp->next;
+    }
+    cout << "\n";
+  }
+  void backdisplay(){
+    node *temp = new node;
+    temp = tail;
+    while(temp != NULL){
+      cout << temp->data << "\t";
+      temp = temp->prev;
+    }
+    cout << "\n";
+  }
+};
+
+int main(){
+  node element;
+  linkedlist list;
+  int n;
+  char q;
+  do{
+    cout << "\n1. Enter the element from start.\n";
+    cout << "2. Enter the element from end\n";
+    cout << "3. Enter the element at any position\n";
+    cout << "4. Enter 'q' to exit\n";
+    cin >> q;
+    switch (q) {
+      case '1':{
+        cout << "\nEnter the element:\t";
+        cin >> element.data;
+        list.frontnode(element.data);
+        break;
+      }
+      case '2':{
+        cout << "\nEnter the element:\t";
+        cin >> element.data;
+        list.endnode(element.data);
+        break;
+      }
+      case '3':{
+        cout << "\nEnter the element of list after which you want to add the element:\t";
+        cin >> n;
+        cout << "\nEnter the element to be inserted:\t";
+        cin >> element.data;
+        list.midinsert(element.data,n);
+      }
+    }
+  }while(q!='q');
+  list.frontdisplay();
+  list.backdisplay();
+}
