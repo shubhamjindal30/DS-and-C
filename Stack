@@ -1,0 +1,89 @@
+#include<iostream>
+using namespace std;
+
+class stack{
+private:
+  int top,size;
+public:
+  int *a;
+  stack(int value){
+    size = value;
+    top = -1;
+    a = new int[size];
+  }
+  int pop(){
+    if(top<0){
+      cout << "\nStack is in underflow condition\n";
+      return 0;
+    }
+    else{
+      int d = a[top--];
+      cout << "\nElement deleted\n";
+      return d;
+    }
+  }
+  void push(int value){
+    if(top>=(size-1)){
+      cout << "\nStack is in overflow condition\n";
+    }
+    else{
+      a[++top] = value;
+      cout << "\nElement inserted\n";
+    }
+  }
+  void isEmpty(){
+    if(top<0){
+      cout << "\nStack is Empty\n";
+    }
+    else{
+      cout << "\nStack is not Empty\n";
+    }
+  }
+  void display(){
+    int i;
+    for(i=top;i>=0;i--){
+      cout << a[i] << "\t";
+    }
+    cout << "\n";
+  }
+};
+int main(){
+  int n;
+  char q;
+  cout << "\nEnter the size of the stack:\t";
+  cin >> n;
+  stack s(n);
+  do{
+    cout << "\nEnter 'q' to exit:\n";
+    cout << "\n1. Enter 1 to push an element in the stack\n";
+    cout << "\n2. Enter 2 to pop out an element from the stack\n";
+    cout << "\n3. Enter 3 to check if the list is empty or not\n";
+    cout << "\nEnter your choice:\t";
+    cin >> q;
+    switch (q) {
+      case '1':{
+        cout << "Enter the element to be pushed into stack:\t";
+        cin >> n;
+        s.push(n);
+        break;
+      }
+      case '2':{
+        n = s.pop();
+        cout << "Element that is poped out:\t" << n;
+        break;
+      }
+      case '3':{
+        s.isEmpty();
+        break;
+      }
+      case 'q':{
+        cout << "q entered. Exiting program.......\n";
+        break;
+      }
+      default:{
+        cout << "\nWrong choice. Enter again.\n";
+      }
+    }
+  }while(q!='q');
+  s.display();
+}
